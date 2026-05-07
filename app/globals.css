@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-jetbrains: 'JetBrains Mono', monospace;
+  --font-inter: 'Inter', sans-serif;
+}
+
+/* ── Scrollbar customization ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2DD4BF44;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2DD4BF88;
+}
+
+/* ── Base layer overrides ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-800 dark:bg-surface-dark dark:text-slate-200;
+    font-family: var(--font-inter), sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-jetbrains), monospace;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-accent;
+  }
+}
+
+/* ── Utility classes ── */
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold font-mono;
+  }
+
+  .card-base {
+    @apply rounded-2xl border border-slate-200 dark:border-surface-border
+           bg-white dark:bg-surface-card
+           transition-all duration-300;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium
+           bg-accent/10 text-accent border border-accent/20
+           dark:bg-accent/10 dark:text-accent dark:border-accent/20;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.15);
+  }
+}
