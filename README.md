@@ -1,99 +1,52 @@
-# Portfólio — Flavio Rodrigues
+# Flavio Rodrigues — Portfolio
 
-Portfolio pessoal construído com **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS** e **Framer Motion**.
+Personal portfolio showcasing my experience as a Back-End & Front-End developer.
 
-## Stack
-
-- **Framework:** Next.js 14 (App Router)
-- **Linguagem:** TypeScript
-- **Estilização:** Tailwind CSS
-- **Animações:** Framer Motion
-- **Tema:** next-themes (dark/light)
-- **Ícones:** react-icons (Fi + Si)
-
-## Como rodar localmente
-
-```bash
-# 1. Entre na pasta
-cd portfolio
-
-# 2. Instale as dependências
-npm install
-
-# 3. Rode em modo desenvolvimento
-npm run dev
-```
-
-Acesse **http://localhost:3000**
-
-## Build para produção
-
-```bash
-npm run build
-npm start
-```
-
-## Deploy na Vercel
-
-1. Crie conta em https://vercel.com
-2. Importe o repositório (ou a pasta `portfolio/`)
-3. Vercel detecta Next.js automaticamente — clique em **Deploy**
+🌐 **[codebyflavio.github.io](https://codebyflavio.github.io)**
 
 ---
 
-## Como personalizar
+## Tech Stack
 
-### 🎨 Trocar as cores principais
+| Layer | Technologies |
+|---|---|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Animations | Framer Motion |
+| Icons | React Icons |
+| Theming | next-themes (dark / light mode) |
+| Hosting | GitHub Pages |
+| CI/CD | GitHub Actions |
 
-Edite `tailwind.config.ts` — seção `colors.accent`:
+---
 
-```ts
-accent: {
-  DEFAULT: "#2DD4BF",  // cor principal (teal) → troque aqui
-  light: "#5EEAD4",    // variante clara
-  dark: "#0D9488",     // variante escura
-},
-```
+## Features
 
-Após trocar o hex, todas as classes `text-accent`, `bg-accent`, `border-accent` mudam automaticamente.
+- **Multilingual** — PT, EN and ES with instant switching and localStorage persistence
+- **Dark / Light mode** — system preference aware, togglable in the header
+- **Typing animation** — dynamic role titles in the hero section
+- **Animated skill bars** — per-category progress bars with scroll-triggered entrance
+- **Interactive experience timeline** — expandable job cards
+- **Project showcase** — cards with tech tags and live/code links
+- **Contact form** — integrated with Formspree, with client-side validation
+- **CV download** — PDF served directly from the project
+- **Fully responsive** — mobile-first layout with animated hamburger nav
 
-### 🖼️ Trocar a foto pessoal
+---
 
-1. Coloque sua foto em `public/photo.jpg`
-2. No componente `components/About.tsx`, substitua o bloco de placeholder pelo `<Image>` do Next.js:
+## Sections
 
-```tsx
-import Image from "next/image";
+- **Hero** — introduction, CTA buttons and social links
+- **About** — bio, personal info, languages spoken and CV download
+- **Skills** — Front-End, Back-End, Database, Testing & QA and DevOps
+- **Experience** — professional timeline with expandable cards + education
+- **Projects** — personal project showcase
+- **Contact** — contact form + social links
 
-// Substitua o <div> de placeholder por:
-<Image
-  src="/photo.jpg"
-  alt="Flavio Rodrigues"
-  fill
-  className="object-cover"
-/>
-```
+---
 
-### 📄 Adicionar o PDF do currículo
+## Author
 
-1. Coloque o arquivo em `public/curriculum-flavio-rodrigues.pdf`
-2. O botão "Download CV" em `About.tsx` já aponta para esse caminho
-
-### 📧 Ativar envio real do formulário (Formspree)
-
-1. Crie conta em https://formspree.io
-2. Crie um novo formulário e copie o ID (ex.: `xabc1234`)
-3. Em `components/Contact.tsx`, substitua a linha de simulação:
-
-```ts
-// Antes (simulação):
-await new Promise((r) => setTimeout(r, 1500));
-
-// Depois (Formspree):
-const res = await fetch("https://formspree.io/f/SEU_ID", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(form),
-});
-if (!res.ok) throw new Error("Falha no envio");
-```
+**Flavio Rodrigues**  
+[github.com/codebyflavio](https://github.com/codebyflavio) · flaviorodriguestrb@gmail.com
