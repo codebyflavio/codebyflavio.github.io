@@ -12,14 +12,11 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("pt");
-
-  useEffect(() => {
+  const [lang, setLangState] = useState<Lang>(() => {
+    if (typeof window === "undefined") return "pt";
     const saved = localStorage.getItem("portfolio-lang") as Lang;
-    if (saved && ["pt", "en", "es"].includes(saved)) {
-      setLangState(saved);
-    }
-  }, []);
+    return saved && ["pt", "en", "es"].includes(saved) ? saved : "pt";
+  });
 
   useEffect(() => {
     document.documentElement.lang =

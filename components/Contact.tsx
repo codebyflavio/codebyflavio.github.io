@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { FiSend, FiMail, FiMapPin, FiGithub, FiLinkedin, FiCheck, FiAlertCircle } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SOCIAL, FORMSPREE_URL } from "@/lib/config";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -24,6 +25,15 @@ export default function Contact() {
     return e;
   };
 
+  useEffect(() => {
+    if (status !== "success") return;
+    const timer = setTimeout(() => {
+      setStatus("idle");
+      setForm({ name: "", email: "", message: "" });
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [status]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
@@ -31,14 +41,13 @@ export default function Contact() {
     setErrors({});
     setStatus("loading");
     try {
-      const res = await fetch("https://formspree.io/f/mkoyzqya", {
+      const res = await fetch(FORMSPREE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
       });
       if (!res.ok) { setStatus("error"); return; }
       setStatus("success");
-      setForm({ name: "", email: "", message: "" });
     } catch {
       setStatus("error");
     }
@@ -87,8 +96,8 @@ export default function Contact() {
               {
                 icon: FiMail,
                 label: "E-mail",
-                value: "flaviorodriguestrb@gmail.com",
-                href: "mailto:flaviorodriguestrb@gmail.com",
+                value: SOCIAL.email,
+                href: `mailto:${SOCIAL.email}`,
               },
               {
                 icon: FiMapPin,
@@ -116,8 +125,8 @@ export default function Contact() {
               <p className="text-xs font-mono text-slate-400 mb-3">{t.contact.socialsLabel}</p>
               <div className="flex gap-3">
                 {[
-                  { icon: FiGithub, href: "https://github.com/codebyflavio", label: "GitHub" },
-                  { icon: FiLinkedin, href: "https://linkedin.com/in/flaviorodrigues-dev", label: "LinkedIn" },
+                  { icon: FiGithub, href: SOCIAL.github, label: "GitHub" },
+                  { icon: FiLinkedin, href: SOCIAL.linkedin, label: "LinkedIn" },
                 ].map(({ icon: Icon, href, label }) => (
                   <motion.a
                     key={label}
@@ -168,57 +177,63 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                   <div>
-                    <label className="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
+                    <label htmlFor="contact-name" className="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
                       {t.contact.nameLabel}
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
                       placeholder={t.contact.namePlaceholder}
+                      aria-describedby={errors.name ? "contact-name-error" : undefined}
                       className={`${inputBase} ${errors.name ? inputError : inputNormal}`}
                     />
                     {errors.name && (
-                      <p className="mt-1 text-xs text-red-400 font-mono flex items-center gap-1">
+                      <p id="contact-name-error" className="mt-1 text-xs text-red-400 font-mono flex items-center gap-1">
                         <FiAlertCircle size={11} /> {errors.name}
                       </p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
+                    <label htmlFor="contact-email" className="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
                       {t.contact.emailLabel}
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
                       placeholder={t.contact.emailPlaceholder}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
                       className={`${inputBase} ${errors.email ? inputError : inputNormal}`}
                     />
                     {errors.email && (
-                      <p className="mt-1 text-xs text-red-400 font-mono flex items-center gap-1">
+                      <p id="contact-email-error" className="mt-1 text-xs text-red-400 font-mono flex items-center gap-1">
                         <FiAlertCircle size={11} /> {errors.email}
                       </p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
+                    <label htmlFor="contact-message" className="block text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
                       {t.contact.messageLabel}
                     </label>
                     <textarea
+                      id="contact-message"
                       name="message"
                       value={form.message}
                       onChange={handleChange}
                       rows={5}
                       placeholder={t.contact.messagePlaceholder}
+                      aria-describedby={errors.message ? "contact-message-error" : undefined}
                       className={`${inputBase} resize-none ${errors.message ? inputError : inputNormal}`}
                     />
                     {errors.message && (
-                      <p className="mt-1 text-xs text-red-400 font-mono flex items-center gap-1">
+                      <p id="contact-message-error" className="mt-1 text-xs text-red-400 font-mono flex items-center gap-1">
                         <FiAlertCircle size={11} /> {errors.message}
                       </p>
                     )}
@@ -257,8 +272,8 @@ export default function Contact() {
 
                   <p className="text-center text-xs font-mono text-slate-400">
                     {t.contact.orSendTo}{" "}
-                    <a href="mailto:flaviorodriguestrb@gmail.com" className="text-accent hover:underline">
-                      flaviorodriguestrb@gmail.com
+                    <a href={`mailto:${SOCIAL.email}`} className="text-accent hover:underline">
+                      {SOCIAL.email}
                     </a>
                   </p>
                 </form>

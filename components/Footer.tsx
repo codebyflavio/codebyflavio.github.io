@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SOCIAL } from "@/lib/config";
 
 const socials = [
-  { icon: FiGithub, href: "https://github.com/codebyflavio", label: "GitHub" },
-  { icon: FiLinkedin, href: "https://linkedin.com/in/flaviorodrigues-dev", label: "LinkedIn" },
-  { icon: FiMail, href: "mailto:flaviorodriguestrb@gmail.com", label: "E-mail" },
+  { icon: FiGithub, href: SOCIAL.github, label: "GitHub" },
+  { icon: FiLinkedin, href: SOCIAL.linkedin, label: "LinkedIn" },
+  { icon: FiMail, href: `mailto:${SOCIAL.email}`, label: "E-mail" },
 ];
 
 export default function Footer() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { HiSun, HiMoon, HiMenuAlt3, HiX } from "react-icons/hi";
@@ -32,10 +32,16 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
+    let lastScroll = 0;
     const handleScroll = () => {
+      const now = Date.now();
+      if (now - lastScroll < 80) return;
+      lastScroll = now;
       setScrolled(window.scrollY > 20);
       for (const id of [...NAV_IDS].reverse()) {
         const el = document.getElementById(id);
@@ -45,9 +51,42 @@ export default function Header() {
         }
       }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (menuOpen && mobileMenuRef.current) {
+      const focusables = mobileMenuRef.current.querySelectorAll<HTMLElement>(
+        "button, a, [tabindex]:not([tabindex='-1'])"
+      );
+      focusables[0]?.focus();
+    }
+  }, [menuOpen]);
+
+  const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Escape") {
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+      return;
+    }
+    if (e.key === "Tab" && mobileMenuRef.current) {
+      const focusables = Array.from(
+        mobileMenuRef.current.querySelectorAll<HTMLElement>(
+          "button, a, [tabindex]:not([tabindex='-1'])"
+        )
+      );
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    }
+  };
 
   const handleNav = (href: string) => {
     setMenuOpen(false);
@@ -143,9 +182,12 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <button
+            ref={menuButtonRef}
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-accent transition-colors"
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             {menuOpen ? <HiX size={22} /> : <HiMenuAlt3 size={22} />}
           </button>
@@ -157,6 +199,9 @@ export default function Header() {
         {menuOpen && (
           <motion.div
             key="mobile-menu"
+            id="mobile-menu"
+            ref={mobileMenuRef}
+            onKeyDown={handleMenuKeyDown}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
