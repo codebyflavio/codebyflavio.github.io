@@ -69,6 +69,7 @@ export default function Projects() {
               key={i}
               meta={meta}
               title={t.projects.items[i].title}
+              story={t.projects.items[i].story}
               longDescription={t.projects.items[i].longDescription}
               viewCode={t.projects.viewCode}
               index={i}
@@ -102,10 +103,11 @@ export default function Projects() {
 }
 
 function ProjectCard({
-  meta, title, longDescription, viewCode, index, inView,
+  meta, title, story, longDescription, viewCode, index, inView,
 }: {
   meta: typeof projectsMeta[0];
   title: string;
+  story: string;
   longDescription: string;
   viewCode: string;
   index: number;
@@ -147,7 +149,20 @@ function ProjectCard({
           </div>
         </div>
 
-        <h3 className="font-mono font-bold text-slate-800 dark:text-white mb-2">{title}</h3>
+        <h3 className="font-mono font-bold text-slate-800 dark:text-white mb-3">{title}</h3>
+
+        <div
+          className="rounded-lg px-3 py-2.5 mb-3"
+          style={{ background: `${meta.accent}0d`, borderLeft: `2px solid ${meta.accent}60` }}
+        >
+          <span className="block text-[10px] font-mono mb-1" style={{ color: meta.accent }}>
+            // o problema
+          </span>
+          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed italic">
+            {story}
+          </p>
+        </div>
+
         <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed flex-1">
           {longDescription}
         </p>

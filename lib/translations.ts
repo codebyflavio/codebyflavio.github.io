@@ -120,18 +120,24 @@ export const translations = {
         {
           title: "DocManager API",
           description: "API de gerenciamento de documentos com Django REST e autenticação JWT",
+          story:
+            "Empresas perdem horas buscando arquivos desatualizados, sem saber quem acessou ou alterou o quê. Esta API nasceu para resolver esse caos: controle de acesso granular, histórico de versões e integração com nuvem centralizados em um único backend.",
           longDescription:
             "Sistema backend completo para upload, categorização e controle de acesso a documentos. Inclui autenticação JWT, permissões granulares, upload de arquivos para S3 e versionamento de documentos. Documentado com Swagger/OpenAPI.",
         },
         {
           title: "Analytics Dashboard",
           description: "Dashboard interativo com React e gráficos dinâmicos",
+          story:
+            "Dados presos em planilhas não contam histórias — gerentes precisam de respostas em segundos, não em horas. Este dashboard foi criado para transformar números brutos em decisões rápidas, com métricas visuais, filtros dinâmicos e relatórios exportáveis na hora.",
           longDescription:
             "Painel de visualização de dados construído com React e TypeScript. Exibe métricas em tempo real com gráficos interativos, filtros dinâmicos, exportação de relatórios em PDF/CSV e tema claro/escuro. Responsivo e acessível.",
         },
         {
           title: "PriceBot Scraper",
           description: "Ferramenta de web scraping e alertas com Selenium e Telegram Bot",
+          story:
+            "Quantas vezes você perdeu uma promoção por não estar checando o preço no momento certo? O PriceBot monitora e-commerces 24/7 e te avisa diretamente no Telegram assim que o preço cai — sem nenhum esforço manual.",
           longDescription:
             "Bot automatizado que monitora preços em e-commerces, detecta variações e envia alertas via Telegram. Utiliza Selenium para scraping, Pytest para testes, agenda coletas com APScheduler e persiste dados em SQLite.",
         },
@@ -287,18 +293,24 @@ export const translations = {
         {
           title: "DocManager API",
           description: "Document management API with Django REST and JWT authentication",
+          story:
+            "Companies waste hours hunting for outdated files with no audit trail of who changed what. This API was built to end that chaos: granular access control, version history and cloud storage integration — all in one place.",
           longDescription:
             "Full backend system for uploading, categorizing and controlling document access. Includes JWT authentication, granular permissions, file upload to S3 and document versioning. Documented with Swagger/OpenAPI.",
         },
         {
           title: "Analytics Dashboard",
           description: "Interactive dashboard with React and dynamic charts",
+          story:
+            "Data locked in spreadsheets doesn't tell a story — managers need answers in seconds, not hours. This dashboard was built to turn raw numbers into quick decisions, with visual metrics, dynamic filters and on-demand exportable reports.",
           longDescription:
             "Data visualization panel built with React and TypeScript. Displays real-time metrics with interactive charts, dynamic filters, PDF/CSV report export and light/dark theme. Responsive and accessible.",
         },
         {
           title: "PriceBot Scraper",
           description: "Web scraping and alert tool with Selenium and Telegram Bot",
+          story:
+            "How many deals have you missed because you weren't checking the price at the right moment? PriceBot watches e-commerce sites 24/7 and pings you on Telegram the instant the price drops — zero manual effort required.",
           longDescription:
             "Automated bot that monitors prices on e-commerce sites, detects changes and sends Telegram alerts. Uses Selenium for scraping, Pytest for testing, APScheduler for scheduling and persists data in SQLite.",
         },
@@ -454,18 +466,24 @@ export const translations = {
         {
           title: "DocManager API",
           description: "API de gestión de documentos con Django REST y autenticación JWT",
+          story:
+            "Las empresas pierden horas buscando archivos desactualizados, sin saber quién accedió o modificó qué. Esta API nació para resolver ese caos: control de acceso granular, historial de versiones e integración con la nube en un solo backend.",
           longDescription:
             "Sistema backend completo para carga, categorización y control de acceso a documentos. Incluye autenticación JWT, permisos granulares, carga de archivos a S3 y versionado de documentos. Documentado con Swagger/OpenAPI.",
         },
         {
           title: "Analytics Dashboard",
           description: "Panel interactivo con React y gráficos dinámicos",
+          story:
+            "Los datos atrapados en hojas de cálculo no cuentan historias — los gerentes necesitan respuestas en segundos, no en horas. Este dashboard fue creado para convertir números crudos en decisiones rápidas, con métricas visuales, filtros dinámicos e informes exportables al instante.",
           longDescription:
             "Panel de visualización de datos construido con React y TypeScript. Muestra métricas en tiempo real con gráficos interactivos, filtros dinámicos, exportación de reportes en PDF/CSV y tema claro/oscuro. Responsivo y accesible.",
         },
         {
           title: "PriceBot Scraper",
           description: "Herramienta de web scraping y alertas con Selenium y Telegram Bot",
+          story:
+            "¿Cuántas ofertas perdiste por no revisar el precio en el momento exacto? PriceBot monitorea e-commerces las 24 horas y te avisa por Telegram en cuanto el precio baja — sin ningún esfuerzo manual.",
           longDescription:
             "Bot automatizado que monitorea precios en e-commerces, detecta variaciones y envía alertas por Telegram. Utiliza Selenium para scraping, Pytest para pruebas, APScheduler para programación y SQLite para persistencia.",
         },
