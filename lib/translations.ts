@@ -73,13 +73,12 @@ export const translations = {
           period: "Jun 2025 — Dez 2025",
           location: "São Paulo, SP",
           activities: [
-            "Criação do modelo relacional em Django ORM para desembaraço aduaneiro (PostgreSQL).",
-            "Script com Watchdog para monitoramento de diretórios e processamento automático de múltiplos XMLs.",
-            "Parsing avançado de XML com persistência, tratamento de exceções e logs detalhados.",
-            "Configuração de logging estruturado para rastreabilidade de operações críticas.",
-            "Centralização de lógica de insert/update reutilizável e idempotente.",
-            "Integração backend (Django REST) com frontend React.js: grids dinâmicos com filtros, paginação e edição inline.",
-            "Otimização de CSS modularizado e responsivo com separação de cabeçalho fixo.",
+            "Projetou modelo relacional em Django ORM para desembaraço aduaneiro, garantindo integridade referencial e performance nas consultas PostgreSQL.",
+            "Automatizou o processamento de múltiplos XMLs de notas fiscais com Watchdog, eliminando importações manuais e reduzindo erros operacionais.",
+            "Implementou parsing avançado de XML com tratamento de exceções e logging estruturado, garantindo rastreabilidade completa de operações críticas.",
+            "Centralizou lógica de insert/update idempotente e reutilizável, tornando re-execuções seguras sem risco de duplicidade.",
+            "Integrou API Django REST ao frontend React.js com grids dinâmicos, filtros, paginação e edição inline — entregando interface operacional ao time de logística.",
+            "Modularizou e otimizou CSS responsivo com separação de cabeçalho fixo, melhorando consistência visual e manutenibilidade.",
           ],
         },
         {
@@ -87,9 +86,9 @@ export const translations = {
           period: "Jun 2024 — Fev 2025",
           location: "Remoto",
           activities: [
-            "Automação de testes com Selenium e Pytest para múltiplos fluxos de negócio.",
-            "Criação de suítes de testes reutilizáveis e de fácil manutenção em Python.",
-            "Integração de testes automatizados em pipelines CI/CD com GitHub Actions.",
+            "Criou suíte E2E com Selenium e Pytest cobrindo os principais fluxos de negócio, substituindo validações manuais repetitivas e acelerando o ciclo de QA.",
+            "Adotou o padrão Page Object Model (POM), tornando os testes reutilizáveis e fáceis de manter à medida que o produto evoluía.",
+            "Integrou os testes automatizados ao pipeline CI/CD via GitHub Actions, detectando regressões automaticamente a cada pull request e antes de cada deploy.",
           ],
         },
         {
@@ -97,11 +96,11 @@ export const translations = {
           period: "Jan 2022 — Jun 2024",
           location: "São Paulo, SP",
           activities: [
-            "Desenvolvimento de sistema de prevenção a vazamento de dados com GeneXus.",
-            "Liderança na implementação de automação de testes com Python e Selenium.",
-            "Estruturação de cenários de regressão e testes de interface.",
-            "Colaboração com equipe de desenvolvimento para correção de inconsistências.",
-            "Code reviews e versionamento com Git/GitFlow.",
+            "Desenvolveu módulo de prevenção a vazamento de dados em GeneXus, protegendo informações sensíveis de clientes na camada de aplicação.",
+            "Liderou a introdução de automação de testes com Python e Selenium no time, documentando o processo e capacitando colegas.",
+            "Estruturou cenários de regressão e testes de interface que serviram de base para validações contínuas do produto.",
+            "Contribuiu para code reviews, padronizando práticas e corrigindo inconsistências antes de chegarem à produção.",
+            "Aplicou Git/GitFlow no versionamento de código, organizando branches e garantindo rastreabilidade das mudanças.",
           ],
         },
       ],
@@ -111,35 +110,46 @@ export const translations = {
       heading: "Meus",
       headingHighlight: "Projetos",
       description:
-        "Seleção de projetos pessoais que demonstram minhas habilidades em diferentes stacks e contextos de uso.",
+        "Estudos de caso reais: o problema, como abordei a solução e o que foi entregue.",
       moreOnGithub: "Mais projetos disponíveis no GitHub",
       viewAllGithub: "Ver todos no GitHub",
       viewCode: "Ver código",
       demo: "Demonstração",
+      caseStudyTabs: {
+        problem: "// problema",
+        solution: "// solução",
+        result: "// resultado",
+      },
       items: [
         {
           title: "DocManager API",
           description: "API de gerenciamento de documentos com Django REST e autenticação JWT",
           story:
-            "Empresas perdem horas buscando arquivos desatualizados, sem saber quem acessou ou alterou o quê. Esta API nasceu para resolver esse caos: controle de acesso granular, histórico de versões e integração com nuvem centralizados em um único backend.",
+            "Empresas perdem horas buscando arquivos desatualizados, sem saber quem acessou ou alterou o quê. Sem controle de versão e sem auditoria, documentos críticos são sobrescritos ou extraviados sem deixar rastro.",
           longDescription:
-            "Sistema backend completo para upload, categorização e controle de acesso a documentos. Inclui autenticação JWT, permissões granulares, upload de arquivos para S3 e versionamento de documentos. Documentado com Swagger/OpenAPI.",
+            "Construí uma API RESTful em Django com autenticação JWT em camadas, sistema de permissões por grupo, upload direto para AWS S3 com geração de URLs presignadas e controle de versão por hash de conteúdo. Documentação completa via Swagger/OpenAPI.",
+          result:
+            "API com cobertura de testes nos endpoints críticos e documentação Swagger pronta para integração. O controle de versão por hash evita sobrescrita acidental, e o sistema de permissões escala para múltiplos times sem retrabalho de código.",
         },
         {
           title: "Analytics Dashboard",
           description: "Dashboard interativo com React e gráficos dinâmicos",
           story:
-            "Dados presos em planilhas não contam histórias — gerentes precisam de respostas em segundos, não em horas. Este dashboard foi criado para transformar números brutos em decisões rápidas, com métricas visuais, filtros dinâmicos e relatórios exportáveis na hora.",
+            "Dados presos em planilhas não contam histórias — gerentes precisam de respostas em segundos, não em horas de exportação e formatação manual. A falta de visibilidade em tempo real atrasa decisões e esconde tendências importantes.",
           longDescription:
-            "Painel de visualização de dados construído com React e TypeScript. Exibe métricas em tempo real com gráficos interativos, filtros dinâmicos, exportação de relatórios em PDF/CSV e tema claro/escuro. Responsivo e acessível.",
+            "Desenvolvi o dashboard com React e TypeScript, utilizando Recharts para gráficos responsivos, Context API para gerenciamento de estado dos filtros, e exportação via jsPDF/PapaParse. Tema claro/escuro persistido em localStorage. Responsivo e acessível.",
+          result:
+            "Interface 100% client-side com carregamento otimizado e sem dependência de servidor para geração de relatórios. Suporte a temas persistido, acessível em qualquer resolução e exportação para PDF/CSV com um clique.",
         },
         {
           title: "PriceBot Scraper",
           description: "Ferramenta de web scraping e alertas com Selenium e Telegram Bot",
           story:
-            "Quantas vezes você perdeu uma promoção por não estar checando o preço no momento certo? O PriceBot monitora e-commerces 24/7 e te avisa diretamente no Telegram assim que o preço cai — sem nenhum esforço manual.",
+            "Monitorar preços manualmente em e-commerces é inviável: você precisa checar dezenas de páginas todos os dias e ainda assim pode perder a janela da promoção. O problema é de atenção e escala — humanos não conseguem fazer isso de forma confiável.",
           longDescription:
-            "Bot automatizado que monitora preços em e-commerces, detecta variações e envia alertas via Telegram. Utiliza Selenium para scraping, Pytest para testes, agenda coletas com APScheduler e persiste dados em SQLite.",
+            "Usei Selenium para scraping dinâmico com rotação de User-Agent, APScheduler para agendamento de coletas horárias, SQLite para histórico de variações e a API do Telegram Bot para alertas instantâneos. Cobertura de testes com Pytest.",
+          result:
+            "Bot em produção monitorando múltiplos produtos simultaneamente, com histórico de preços persistido e alertas em tempo real via Telegram. A cobertura com Pytest garante estabilidade do scraping mesmo diante de mudanças no layout dos sites.",
         },
       ],
     },
@@ -246,13 +256,12 @@ export const translations = {
           period: "Jun 2025 — Dec 2025",
           location: "São Paulo, SP",
           activities: [
-            "Created relational model in Django ORM for customs clearance (PostgreSQL).",
-            "Script with Watchdog for directory monitoring and automatic processing of multiple XMLs.",
-            "Advanced XML parsing with persistence, exception handling and detailed logs.",
-            "Structured logging configuration for traceability of critical operations.",
-            "Centralized reusable and idempotent insert/update logic.",
-            "Backend (Django REST) integration with React.js frontend: dynamic grids with filters, pagination and inline editing.",
-            "Optimized modular and responsive CSS with fixed header separation.",
+            "Designed relational model in Django ORM for customs clearance, ensuring referential integrity and optimized PostgreSQL queries.",
+            "Automated XML invoice processing with Watchdog, eliminating manual imports and reducing operational errors.",
+            "Implemented advanced XML parsing with exception handling and structured logging, ensuring full traceability of critical operations.",
+            "Centralized reusable, idempotent insert/update logic, making re-executions safe and duplication-free.",
+            "Integrated Django REST API with React.js frontend via dynamic grids, filters, pagination and inline editing — delivering an operational interface to the logistics team.",
+            "Modularized and optimized responsive CSS with fixed header separation, improving visual consistency and maintainability.",
           ],
         },
         {
@@ -260,9 +269,9 @@ export const translations = {
           period: "Jun 2024 — Feb 2025",
           location: "Remote",
           activities: [
-            "Test automation with Selenium and Pytest for multiple business flows.",
-            "Creation of reusable and maintainable test suites in Python.",
-            "Integration of automated tests into CI/CD pipelines with GitHub Actions.",
+            "Built an E2E test suite with Selenium and Pytest covering key business flows, replacing repetitive manual validations and accelerating the QA cycle.",
+            "Adopted the Page Object Model (POM) pattern, making tests reusable and easy to maintain as the product evolved.",
+            "Integrated automated tests into the CI/CD pipeline via GitHub Actions, automatically catching regressions on every pull request and before each deploy.",
           ],
         },
         {
@@ -270,11 +279,11 @@ export const translations = {
           period: "Jan 2022 — Jun 2024",
           location: "São Paulo, SP",
           activities: [
-            "Development of a data leak prevention system using GeneXus.",
-            "Led the implementation of test automation with Python and Selenium.",
-            "Structured regression and UI test scenarios.",
-            "Collaborated with the development team to fix inconsistencies.",
-            "Code reviews and versioning with Git/GitFlow.",
+            "Developed a data leak prevention module in GeneXus, protecting sensitive customer information at the application layer.",
+            "Led the introduction of test automation with Python and Selenium on the team, documenting the process and onboarding colleagues.",
+            "Structured regression and UI test scenarios that became the foundation for the product's ongoing validation.",
+            "Contributed to code reviews, standardizing practices and catching inconsistencies before they reached production.",
+            "Applied Git/GitFlow for code versioning, organizing branches and ensuring full traceability of changes.",
           ],
         },
       ],
@@ -284,35 +293,46 @@ export const translations = {
       heading: "My",
       headingHighlight: "Projects",
       description:
-        "A selection of personal projects that showcase my skills across different stacks and use cases.",
+        "Real case studies: the problem, how I approached the solution and what was delivered.",
       moreOnGithub: "More projects available on GitHub",
       viewAllGithub: "View all on GitHub",
       viewCode: "View code",
       demo: "Live demo",
+      caseStudyTabs: {
+        problem: "// problem",
+        solution: "// solution",
+        result: "// result",
+      },
       items: [
         {
           title: "DocManager API",
           description: "Document management API with Django REST and JWT authentication",
           story:
-            "Companies waste hours hunting for outdated files with no audit trail of who changed what. This API was built to end that chaos: granular access control, version history and cloud storage integration — all in one place.",
+            "Companies waste hours hunting for outdated files with no audit trail of who changed what. Without version control or access tracking, critical documents get overwritten or lost without a trace.",
           longDescription:
-            "Full backend system for uploading, categorizing and controlling document access. Includes JWT authentication, granular permissions, file upload to S3 and document versioning. Documented with Swagger/OpenAPI.",
+            "Built a layered Django REST API with JWT authentication, group-based permission system, direct AWS S3 upload with presigned URL generation and content-hash versioning. Full Swagger/OpenAPI documentation.",
+          result:
+            "API with test coverage on critical endpoints and Swagger documentation ready for integration. Hash-based versioning prevents accidental overwrites, and the permission system scales to multiple teams without code rework.",
         },
         {
           title: "Analytics Dashboard",
           description: "Interactive dashboard with React and dynamic charts",
           story:
-            "Data locked in spreadsheets doesn't tell a story — managers need answers in seconds, not hours. This dashboard was built to turn raw numbers into quick decisions, with visual metrics, dynamic filters and on-demand exportable reports.",
+            "Data locked in spreadsheets doesn't tell a story — managers need answers in seconds, not hours of manual export and formatting. The lack of real-time visibility delays decisions and hides important trends.",
           longDescription:
-            "Data visualization panel built with React and TypeScript. Displays real-time metrics with interactive charts, dynamic filters, PDF/CSV report export and light/dark theme. Responsive and accessible.",
+            "Built the dashboard with React and TypeScript, using Recharts for responsive charts, Context API for filter state management, and jsPDF/PapaParse for exports. Light/dark theme persisted in localStorage. Responsive and accessible.",
+          result:
+            "100% client-side interface with optimized loading and no server dependency for report generation. Persistent theme support, accessible at any resolution and one-click PDF/CSV export.",
         },
         {
           title: "PriceBot Scraper",
           description: "Web scraping and alert tool with Selenium and Telegram Bot",
           story:
-            "How many deals have you missed because you weren't checking the price at the right moment? PriceBot watches e-commerce sites 24/7 and pings you on Telegram the instant the price drops — zero manual effort required.",
+            "Manually monitoring prices across e-commerce sites is unsustainable: you'd need to check dozens of pages daily and still risk missing the promotion window. It's an attention and scale problem — humans simply can't do this reliably.",
           longDescription:
-            "Automated bot that monitors prices on e-commerce sites, detects changes and sends Telegram alerts. Uses Selenium for scraping, Pytest for testing, APScheduler for scheduling and persists data in SQLite.",
+            "Used Selenium for dynamic scraping with User-Agent rotation, APScheduler for hourly scheduled collections, SQLite for price variation history and the Telegram Bot API for instant alerts. Test coverage with Pytest.",
+          result:
+            "Bot running in production monitoring multiple products simultaneously, with persisted price history and real-time Telegram alerts. Pytest coverage ensures scraping stability even as site layouts change.",
         },
       ],
     },
@@ -419,13 +439,12 @@ export const translations = {
           period: "Jun 2025 — Dic 2025",
           location: "São Paulo, SP",
           activities: [
-            "Creación del modelo relacional en Django ORM para despacho aduanero (PostgreSQL).",
-            "Script con Watchdog para monitoreo de directorios y procesamiento automático de múltiples XMLs.",
-            "Parseo avanzado de XML con persistencia, manejo de excepciones y logs detallados.",
-            "Configuración de logging estructurado para trazabilidad de operaciones críticas.",
-            "Centralización de lógica de insert/update reutilizable e idempotente.",
-            "Integración backend (Django REST) con frontend React.js: grids dinámicos con filtros, paginación y edición inline.",
-            "Optimización de CSS modularizado y responsivo con separación de cabecera fija.",
+            "Diseñó modelo relacional en Django ORM para despacho aduanero, garantizando integridad referencial y consultas optimizadas en PostgreSQL.",
+            "Automatizó el procesamiento de múltiples XMLs de facturas con Watchdog, eliminando importaciones manuales y reduciendo errores operacionales.",
+            "Implementó parseo avanzado de XML con manejo de excepciones y logging estructurado, garantizando trazabilidad completa de operaciones críticas.",
+            "Centralizó lógica de insert/update idempotente y reutilizable, haciendo las re-ejecuciones seguras y sin riesgo de duplicados.",
+            "Integró API Django REST con frontend React.js con grids dinámicos, filtros, paginación y edición inline — entregando interfaz operacional al equipo de logística.",
+            "Modularizó y optimizó CSS responsivo con separación de cabecera fija, mejorando consistencia visual y mantenibilidad.",
           ],
         },
         {
@@ -433,9 +452,9 @@ export const translations = {
           period: "Jun 2024 — Feb 2025",
           location: "Remoto",
           activities: [
-            "Automatización de pruebas con Selenium y Pytest para múltiples flujos de negocio.",
-            "Creación de suites de pruebas reutilizables y fáciles de mantener en Python.",
-            "Integración de pruebas automatizadas en pipelines CI/CD con GitHub Actions.",
+            "Construyó suite E2E con Selenium y Pytest cubriendo los principales flujos de negocio, reemplazando validaciones manuales repetitivas y acelerando el ciclo de QA.",
+            "Adoptó el patrón Page Object Model (POM), haciendo las pruebas reutilizables y fáciles de mantener a medida que el producto evolucionaba.",
+            "Integró las pruebas automatizadas al pipeline CI/CD vía GitHub Actions, detectando regresiones automáticamente en cada pull request y antes de cada deploy.",
           ],
         },
         {
@@ -443,11 +462,11 @@ export const translations = {
           period: "Ene 2022 — Jun 2024",
           location: "São Paulo, SP",
           activities: [
-            "Desarrollo de sistema de prevención de fuga de datos con GeneXus.",
-            "Liderazgo en la implementación de automatización de pruebas con Python y Selenium.",
-            "Estructuración de escenarios de regresión y pruebas de interfaz.",
-            "Colaboración con el equipo de desarrollo para corrección de inconsistencias.",
-            "Code reviews y versionado con Git/GitFlow.",
+            "Desarrolló módulo de prevención de fuga de datos en GeneXus, protegiendo información sensible de clientes en la capa de aplicación.",
+            "Lideró la introducción de automatización de pruebas con Python y Selenium en el equipo, documentando el proceso y capacitando a colegas.",
+            "Estructuró escenarios de regresión y pruebas de interfaz que sirvieron de base para las validaciones continuas del producto.",
+            "Contribuyó en code reviews, estandarizando prácticas y corrigiendo inconsistencias antes de llegar a producción.",
+            "Aplicó Git/GitFlow para versionado del código, organizando branches y garantizando trazabilidad de todos los cambios.",
           ],
         },
       ],
@@ -457,35 +476,46 @@ export const translations = {
       heading: "Mis",
       headingHighlight: "Proyectos",
       description:
-        "Selección de proyectos personales que demuestran mis habilidades en diferentes stacks y contextos de uso.",
+        "Casos de estudio reales: el problema, cómo abordé la solución y qué fue entregado.",
       moreOnGithub: "Más proyectos disponibles en GitHub",
       viewAllGithub: "Ver todos en GitHub",
       viewCode: "Ver código",
       demo: "Demostración",
+      caseStudyTabs: {
+        problem: "// problema",
+        solution: "// solución",
+        result: "// resultado",
+      },
       items: [
         {
           title: "DocManager API",
           description: "API de gestión de documentos con Django REST y autenticación JWT",
           story:
-            "Las empresas pierden horas buscando archivos desactualizados, sin saber quién accedió o modificó qué. Esta API nació para resolver ese caos: control de acceso granular, historial de versiones e integración con la nube en un solo backend.",
+            "Las empresas pierden horas buscando archivos desactualizados, sin saber quién accedió o modificó qué. Sin control de versiones ni auditoría, los documentos críticos se sobrescriben o se pierden sin dejar rastro.",
           longDescription:
-            "Sistema backend completo para carga, categorización y control de acceso a documentos. Incluye autenticación JWT, permisos granulares, carga de archivos a S3 y versionado de documentos. Documentado con Swagger/OpenAPI.",
+            "Construí una API RESTful en Django con autenticación JWT por capas, sistema de permisos por grupo, carga directa a AWS S3 con generación de URLs presignadas y control de versión por hash de contenido. Documentación completa con Swagger/OpenAPI.",
+          result:
+            "API con cobertura de pruebas en endpoints críticos y documentación Swagger lista para integración. El versionado por hash evita sobrescritura accidental, y el sistema de permisos escala a múltiples equipos sin retrabajo.",
         },
         {
           title: "Analytics Dashboard",
           description: "Panel interactivo con React y gráficos dinámicos",
           story:
-            "Los datos atrapados en hojas de cálculo no cuentan historias — los gerentes necesitan respuestas en segundos, no en horas. Este dashboard fue creado para convertir números crudos en decisiones rápidas, con métricas visuales, filtros dinámicos e informes exportables al instante.",
+            "Los datos atrapados en hojas de cálculo no cuentan historias — los gerentes necesitan respuestas en segundos, no horas de exportación y formateo manual. La falta de visibilidad en tiempo real retrasa decisiones y oculta tendencias importantes.",
           longDescription:
-            "Panel de visualización de datos construido con React y TypeScript. Muestra métricas en tiempo real con gráficos interactivos, filtros dinámicos, exportación de reportes en PDF/CSV y tema claro/oscuro. Responsivo y accesible.",
+            "Desarrollé el dashboard con React y TypeScript, usando Recharts para gráficos responsivos, Context API para gestión del estado de filtros, y jsPDF/PapaParse para exportaciones. Tema claro/oscuro persistido en localStorage. Responsivo y accesible.",
+          result:
+            "Interfaz 100% client-side con carga optimizada y sin dependencia de servidor para generación de reportes. Soporte de temas persistente, accesible en cualquier resolución y exportación a PDF/CSV con un clic.",
         },
         {
           title: "PriceBot Scraper",
           description: "Herramienta de web scraping y alertas con Selenium y Telegram Bot",
           story:
-            "¿Cuántas ofertas perdiste por no revisar el precio en el momento exacto? PriceBot monitorea e-commerces las 24 horas y te avisa por Telegram en cuanto el precio baja — sin ningún esfuerzo manual.",
+            "Monitorear precios manualmente en e-commerces es insostenible: habría que revisar decenas de páginas diariamente y aun así arriesgarse a perder la ventana de la promoción. Es un problema de atención y escala — los humanos simplemente no pueden hacerlo de forma confiable.",
           longDescription:
-            "Bot automatizado que monitorea precios en e-commerces, detecta variaciones y envía alertas por Telegram. Utiliza Selenium para scraping, Pytest para pruebas, APScheduler para programación y SQLite para persistencia.",
+            "Usé Selenium para scraping dinámico con rotación de User-Agent, APScheduler para colectas horarias programadas, SQLite para historial de variaciones y la API del Telegram Bot para alertas instantáneas. Cobertura de pruebas con Pytest.",
+          result:
+            "Bot en producción monitoreando múltiples productos simultáneamente, con historial de precios persistido y alertas en tiempo real por Telegram. La cobertura con Pytest garantiza estabilidad del scraping incluso ante cambios en el layout de los sitios.",
         },
       ],
     },

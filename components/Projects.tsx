@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { FiGithub, FiCode } from "react-icons/fi";
 import { SiDjango, SiReact, SiPython, SiSelenium, SiTypescript, SiPostgresql } from "react-icons/si";
@@ -40,6 +40,8 @@ const projectsMeta = [
   },
 ];
 
+type Tab = "problem" | "solution" | "result";
+
 export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -70,7 +72,9 @@ export default function Projects() {
               meta={meta}
               title={t.projects.items[i].title}
               story={t.projects.items[i].story}
-              longDescription={t.projects.items[i].longDescription}
+              solution={t.projects.items[i].longDescription}
+              result={t.projects.items[i].result}
+              tabs={t.projects.caseStudyTabs}
               viewCode={t.projects.viewCode}
               index={i}
               inView={inView}
@@ -103,16 +107,33 @@ export default function Projects() {
 }
 
 function ProjectCard({
-  meta, title, story, longDescription, viewCode, index, inView,
+  meta, title, story, solution, result, tabs, viewCode, index, inView,
 }: {
   meta: typeof projectsMeta[0];
   title: string;
   story: string;
-  longDescription: string;
+  solution: string;
+  result: string;
+  tabs: { problem: string; solution: string; result: string };
   viewCode: string;
   index: number;
   inView: boolean;
 }) {
+  const [activeTab, setActiveTab] = useState<Tab>("problem");
+
+  const tabContent: Record<Tab, string> = {
+    problem: story,
+    solution: solution,
+    result: result,
+  };
+
+  const tabKeys: Tab[] = ["problem", "solution", "result"];
+  const tabLabels: Record<Tab, string> = {
+    problem: tabs.problem,
+    solution: tabs.solution,
+    result: tabs.result,
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -127,46 +148,59 @@ function ProjectCard({
       />
 
       <div className="flex flex-col flex-1 p-6">
-        <div className="flex items-start justify-between mb-3">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-4">
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center"
             style={{ background: `${meta.accent}15` }}
           >
             <FiCode size={18} style={{ color: meta.accent }} />
           </div>
-          <div className="flex gap-2">
-            <motion.a
-              href={meta.codeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Source code"
-              className="p-1.5 rounded-lg text-slate-400 hover:text-accent transition-colors"
-            >
-              <FiGithub size={17} />
-            </motion.a>
-          </div>
+          <motion.a
+            href={meta.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Source code"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-accent transition-colors"
+          >
+            <FiGithub size={17} />
+          </motion.a>
         </div>
 
+        {/* Title */}
         <h3 className="font-mono font-bold text-slate-800 dark:text-white mb-3">{title}</h3>
 
+        {/* Case study tabs */}
+        <div className="flex gap-1 mb-3">
+          {tabKeys.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className="flex-1 text-[10px] font-mono px-1.5 py-1 rounded transition-all duration-200"
+              style={
+                activeTab === tab
+                  ? { background: `${meta.accent}20`, color: meta.accent, border: `1px solid ${meta.accent}50` }
+                  : { background: "transparent", color: "#94a3b8", border: "1px solid transparent" }
+              }
+            >
+              {tabLabels[tab]}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab content */}
         <div
-          className="rounded-lg px-3 py-2.5 mb-3"
-          style={{ background: `${meta.accent}0d`, borderLeft: `2px solid ${meta.accent}60` }}
+          className="rounded-lg px-3 py-2.5 flex-1"
+          style={{ background: `${meta.accent}08`, borderLeft: `2px solid ${meta.accent}40` }}
         >
-          <span className="block text-[10px] font-mono mb-1" style={{ color: meta.accent }}>
-            // o problema
-          </span>
-          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed italic">
-            {story}
+          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            {tabContent[activeTab]}
           </p>
         </div>
 
-        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed flex-1">
-          {longDescription}
-        </p>
-
+        {/* Tech tags */}
         <div className="flex flex-wrap gap-1.5 mt-5">
           {meta.tags.map(({ name, icon: Icon, color }) => (
             <span
@@ -180,6 +214,7 @@ function ProjectCard({
           ))}
         </div>
 
+        {/* Action */}
         <div className="flex gap-3 mt-5">
           <a
             href={meta.codeUrl}
