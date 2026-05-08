@@ -30,7 +30,7 @@ const projectsMeta = [
   },
   {
     accent: "#43B02A",
-    codeUrl: "https://github.com/codebyflavio",
+    codeUrl: "https://github.com/codebyflavio/pricebot-scraper",
     tags: [
       { name: "Python", icon: SiPython, color: "#3776AB" },
       { name: "Selenium", icon: SiSelenium, color: "#43B02A" },
