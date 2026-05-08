@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FiGithub, FiExternalLink, FiCode } from "react-icons/fi";
+import { FiGithub, FiCode } from "react-icons/fi";
 import { SiDjango, SiReact, SiPython, SiSelenium, SiTypescript, SiPostgresql } from "react-icons/si";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -10,8 +10,7 @@ const projectsMeta = [
   {
     accent: "#2DD4BF",
     featured: true,
-    codeUrl: "#",
-    demoUrl: "#",
+    codeUrl: "https://github.com/codebyflavio/docmanager-api",
     tags: [
       { name: "Django REST", icon: SiDjango, color: "#2DD4BF" },
       { name: "Python", icon: SiPython, color: "#3776AB" },
@@ -21,8 +20,7 @@ const projectsMeta = [
   },
   {
     accent: "#61DAFB",
-    codeUrl: "#",
-    demoUrl: "#",
+    codeUrl: "https://github.com/codebyflavio",
     tags: [
       { name: "React.js", icon: SiReact, color: "#61DAFB" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
@@ -32,8 +30,7 @@ const projectsMeta = [
   },
   {
     accent: "#43B02A",
-    codeUrl: "#",
-    demoUrl: "#",
+    codeUrl: "https://github.com/codebyflavio",
     tags: [
       { name: "Python", icon: SiPython, color: "#3776AB" },
       { name: "Selenium", icon: SiSelenium, color: "#43B02A" },
@@ -74,7 +71,6 @@ export default function Projects() {
               title={t.projects.items[i].title}
               longDescription={t.projects.items[i].longDescription}
               viewCode={t.projects.viewCode}
-              demo={t.projects.demo}
               index={i}
               inView={inView}
             />
@@ -106,13 +102,12 @@ export default function Projects() {
 }
 
 function ProjectCard({
-  meta, title, longDescription, viewCode, demo, index, inView,
+  meta, title, longDescription, viewCode, index, inView,
 }: {
   meta: typeof projectsMeta[0];
   title: string;
   longDescription: string;
   viewCode: string;
-  demo: string;
   index: number;
   inView: boolean;
 }) {
@@ -149,17 +144,6 @@ function ProjectCard({
             >
               <FiGithub size={17} />
             </motion.a>
-            <motion.a
-              href={meta.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Live demo"
-              className="p-1.5 rounded-lg text-slate-400 hover:text-accent transition-colors"
-            >
-              <FiExternalLink size={17} />
-            </motion.a>
           </div>
         </div>
 
@@ -184,16 +168,11 @@ function ProjectCard({
         <div className="flex gap-3 mt-5">
           <a
             href={meta.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-1 text-center py-2 rounded-lg border border-slate-200 dark:border-surface-border text-xs font-mono text-slate-600 dark:text-slate-400 hover:border-accent/50 hover:text-accent transition-colors"
           >
             {viewCode}
-          </a>
-          <a
-            href={meta.demoUrl}
-            className="flex-1 text-center py-2 rounded-lg text-xs font-mono text-surface-dark font-semibold transition-colors"
-            style={{ background: meta.accent }}
-          >
-            {demo}
           </a>
         </div>
       </div>
