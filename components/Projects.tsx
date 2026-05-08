@@ -20,7 +20,7 @@ const projectsMeta = [
   },
   {
     accent: "#61DAFB",
-    codeUrl: "https://github.com/codebyflavio",
+    codeUrl: "https://github.com/codebyflavio/analytics-dashboard",
     tags: [
       { name: "React.js", icon: SiReact, color: "#61DAFB" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
