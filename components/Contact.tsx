@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { FiSend, FiMail, FiMapPin, FiGithub, FiLinkedin, FiCheck, FiAlertCircle } from "react-icons/fi";
+import { FiSend, FiMail, FiMapPin, FiGithub, FiCheck, FiAlertCircle } from "react-icons/fi";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SOCIAL, FORMSPREE_URL } from "@/lib/config";
 
@@ -126,7 +126,6 @@ export default function Contact() {
               <div className="flex gap-3">
                 {[
                   { icon: FiGithub, href: SOCIAL.github, label: "GitHub" },
-                  { icon: FiLinkedin, href: SOCIAL.linkedin, label: "LinkedIn" },
                 ].map(({ icon: Icon, href, label }) => (
                   <motion.a
                     key={label}

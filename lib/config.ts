@@ -1,6 +1,5 @@
 export const SOCIAL = {
   github: "https://github.com/codebyflavio",
-  linkedin: "https://linkedin.com/in/flaviorodrigues-dev",
   email: "flaviorodriguestrb@gmail.com",
 } as const;
 

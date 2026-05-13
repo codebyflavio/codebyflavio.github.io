@@ -68,7 +68,6 @@ const jsonLd = {
   email: "flaviorodriguestrb@gmail.com",
   sameAs: [
     "https://github.com/codebyflavio",
-    "https://linkedin.com/in/flaviorodrigues-dev",
   ],
   address: {
     "@type": "PostalAddress",
